@@ -1,0 +1,165 @@
+
+<section class="content" style="padding: 10px">
+    <div class="container-fluid">  
+      <!-- Page Heading -->
+      <h1 class="h3 mb-2 text-gray-800">Planifications des entrainements</h1>
+  
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+          <div class="card-header d-flex">
+            <div class="mr-auto p-2" style="text-align: left;">
+              <h6 class="font-weight-bold text-primary">Pour ajouter une nouvelle planification, cliquez sur le bouton ajouter</h6>
+            </div>
+            <div class="p-2" style="text-align: right;">
+                <button type="button" class="btn btn-outline-success" (click)="goToAddPage()"  >
+                    <b>Ajouter</b>
+                </button>
+            </div>       
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Groupe</th>
+                                <th scope="col">Salle</th>
+                                <th scope="col">Heure</th>
+                                <th scope="col">Jours</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let plan of Planifications ; let i=index">
+                                <th scope="row">{{i}}</th>
+                                <td>{{plan.nom_groupe}}</td>
+                                <td>{{plan.salle}}</td>
+                                <td>De {{plan.heure_debut}} à {{plan.heure_fin}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#joursModal" (click)="afficherJours(i)">
+                                          Afficher
+                                    </button>
+                                </td>
+                                <td> 
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="modifier(i)">
+                                        Modifier
+                                  </button>
+                                </td>  
+                                <td> 
+                                  <button type="button" class="btn btn-danger" (click)="supprimer(plan.id,i)"  >
+                                        Supprimer
+                                  </button>
+                                </td>   
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                   <!-- Modal -->
+                  <div class="modal fade" id="joursModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Liste des jours d'entrainements</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                              <ul class="list-group">
+                                  <li class="list-group-item" *ngFor="let jour of ListeJours ; let i=index">{{jour}}</li>
+                              </ul>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modifier planification</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label>Choisir un groupe</label>
+                                    <select class="form-control show-tick" type="text" [(ngModel)]="groupe" name="groupe"> 
+                                          <option value="{{i}}" *ngFor="let grp of Groupes; let i = index;">
+                                                {{grp.nom}} ({{grp.nom_discipline}} entrainé par {{grp.nom_entraineur}})
+                                          </option>
+                                    </select>
+                                </div>
+      
+                                <div class="form-group">
+                                  <label>Salle d'entrainement</label>
+                                  <div class="form-line">
+                                        <input type="text" class="form-control" placeholder="Salle d'entrainement" [(ngModel)]="salle" name="salle" required />
+                                  </div>
+                                </div>
+      
+                                <div class="form-group">
+                                  <label>Heure de début</label>
+                                  <div class="form-line">
+                                        <input type="datetime" class="form-control" placeholder="hh:mm" [(ngModel)]="heureDebut" name="heureDebut" required />
+                                  </div>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>Heure de fin</label>
+                                    <div class="form-line">
+                                          <input type="datetime" class="form-control" placeholder="hh:mm" [(ngModel)]="heureFin" name="heureFin" required />
+                                    </div>
+                                  </div>
+      
+                                  <div class="form-group">
+                                      <label>Choisir les jours d'entrainement</label>
+                                      <select class="form-control show-tick" type="text" [(ngModel)]="jours" name="jours" (ngModelChange)="joursChanged()" > 
+                                            <option value="Lundi">Lundi</option>
+                                            <option value="Mardi">Mardi</option>
+                                            <option value="Mercredi">Mercredi</option>
+                                            <option value="Jeudi">Jeudi</option>
+                                            <option value="Vendredi">Vendredi</option>
+                                            <option value="Samedi">Samedi</option>
+                                            <option value="Dimanche">Dimanche</option>
+                                      </select>
+                                  </div>
+        
+                                  <div class="form-group">
+                                      <label>Liste des jours choisis</label>
+                                      <select multiple class="form-control" [(ngModel)]="listeJours" name="listeJours" disabled> 
+                                            <option value="{{i}}" *ngFor="let jour of Jours; let i = index;">
+                                                  {{jour}}
+                                            </option>
+                                      </select>
+                                  </div>    
+                                  <div class="alert alert-danger" role="alert" *ngIf = "error">
+                                      {{errorMessage}}
+                                  </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-primary" (click)="modifier_planification(i)">Enregistrer</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+  </section>
+  
+  

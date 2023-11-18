@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Créer une publication</ion-title>
+    <ion-buttons slot="start">
+        <ion-button size="small" fill="clear" color="light" expand="full" (click) = "closeModal()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+        <ion-button size="small" fill="clear" color="light" expand="full" (click) = "publish()">
+            Publier
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding-top>
+
+    <div>
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+            <img src="/assets/user.png">
+        </ion-avatar>
+        <ion-label>
+            <ion-card-title><b>{{username}}</b></ion-card-title>
+        </ion-label>
+      </ion-item>
+    </div>  
+
+    <div>
+        <ion-textarea style ="font-size: 22px" placeholder="Exprimez-vous" [rows]="nb_rows" [(ngModel)]="content" name="content"></ion-textarea>
+    </div>
+    <div *ngIf="show_image">
+        <img [src]="imageUrl" width="100%">
+    </div>
+</ion-content>
+<ion-footer>
+    <div>
+        <ion-row justify-content-center> 
+          <ion-col>
+              <ion-button size="default" fill="clear" color="primary" expand="full" (click) = "takePicture()">
+                  <ion-icon slot="icon-only" name="camera"></ion-icon>
+              </ion-button>
+          </ion-col>
+
+          <ion-col>
+              <ion-button size="default" fill="clear" color="primary" expand="full" (click) = "pickPicture()">
+                  <ion-icon slot="icon-only" name="images"></ion-icon>
+              </ion-button>
+          </ion-col>
+        </ion-row>
+        <div style="height: 1pt; background-color: #dcdee2"></div>
+    </div>
+</ion-footer>

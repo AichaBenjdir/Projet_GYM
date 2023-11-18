@@ -1,0 +1,137 @@
+<section class="content" style="padding: 10px">
+  <div class="container-fluid">  
+      <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Liste des adhérents</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header">
+          <div class="mr-auto p-2">
+            <h6 class="font-weight-bold text-primary">Ci-dessous, la liste de vos adhérents. Pour supprimer un adhérent, cliquez sur le bouton supprimer devant son nom.</h6>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Nom</th>
+                              <th scope="col">CIN</th>
+                              <th scope="col">Télèphone</th>
+                              <th scope="col">Date de naissance</th>
+                              <th scope="col">Sexe</th>
+                              <th scope="col">Groupes</th>
+                              <th scope="col">Abonnements</th>
+                              <th scope="col">Etat d'absence</th>
+                              <th scope="col"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let adh of Adherents ; let i=index">
+                              <th scope="row">{{i}}</th>
+                              <td>{{adh.nom}}</td>
+                              <td>{{adh.cin}}</td>
+                              <td>{{adh.telephone}}</td>
+                              <td>{{adh.date_naissance}}</td>
+                              <td>{{adh.sexe}}</td>
+                              <td> 
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#groupesModal" (click)="afficherGroupes(i)">
+                                      Afficher
+                                </button>
+                              </td>
+                              <td> 
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#abonnementsModal" (click)="afficherAbonnements(i)">
+                                      Afficher
+                                </button>
+                              </td>
+                              <td> 
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#absenceModal" (click)="afficherAbsence(i)">
+                                      Afficher
+                                </button>
+                              </td>
+                              <td> 
+                                <button type="button" class="btn btn-danger" (click)="supprimer(adh.id,i)"  >
+                                      Supprimer
+                                </button>
+                              </td>   
+                            </tr>
+                          </tbody>
+                      </table>
+                  </div>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="groupesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Liste des groupes</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" *ngFor="let grp of Groupes ; let i=index"><b>{{grp.nom}}</b> (Entraineur: {{grp.nom_entraineur}})</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="abonnementsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Liste des abonnements</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" *ngFor="let abn of Abonnements ; let i=index"><b>{{abn.nom_discipline}}</b> (Mois: {{abn.mois}}, Option: {{abn.option}})</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="absenceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Etat d'absence</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                              <h6>Il a {{nb_presences}} présences et {{nb_absences}} absences</h6>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item" *ngFor="let abs of Absences ; let i=index"><b>Date: {{abs.date}}</b> (Etat: {{abs.etat}})</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+          </div>
+      </div>
+  </div>
+</section>

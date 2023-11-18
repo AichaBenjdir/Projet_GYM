@@ -1,0 +1,60 @@
+<div class="content bg-gradient-primary" style="padding: 20px; height: 100vh">   
+  <div class="container  h-100">
+
+      <!-- Outer Row -->
+      <div class="row  h-100 justify-content-center  align-items-center">
+          <div class="col-xl-10 col-lg-12 col-md-9">
+
+              <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body">
+                  <!-- Nested Row within Card Body -->
+                  <div class="row align-items-center">
+                      <div class="col-lg-5 d-none d-lg-block p-2 justify-content-center"><img src="assets\gym.png"  width = "300px" height = "300px" class="rounded mx-auto d-block justify-content-center" ></div>
+                      <div class="col-lg-7">
+                        <div class="p-5">
+                          <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Bienvenu à GYM ADMIN!</h1>
+                          </div>
+                          <form class="user">
+                            <div class="form-group row">
+                              <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" name = "prenom" placeholder="Prénom" [(ngModel)]="prenom" required>
+                              </div>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" name = "nom" placeholder="Nom" [(ngModel)]="nom" required>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <input type="email" class="form-control form-control-user" name = "email" placeholder="Email" [(ngModel)]="email" required>
+                            </div>
+                            <div class="form-group row">
+                              <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="password" class="form-control form-control-user" name = "password" placeholder="Mot de passe" [(ngModel)]="password" required>
+                              </div>
+                              <div class="col-sm-6">
+                                <input type="password" class="form-control form-control-user" name = "confirmPassword" placeholder="Confirmer mot de passe" [(ngModel)]="confirmPassword" required>
+                              </div>
+                            </div>
+                            <div class="alert alert-danger" role="alert" *ngIf = "error">
+                              Les mots de passe ne sont pas identiques!
+                            </div>
+                            <button class="btn btn-primary btn-user btn-block" (click)="signup()">
+                              Créer votre compte
+                            </button>
+                            <hr>
+                          </form>
+                          <hr>
+                          <div class="text-center">
+                            <a class="small"routerLink="/forgot_password">Mot de passe oublié?</a>
+                          </div>
+                          <div class="text-center">
+                            <a class="small" routerLink="/login">Vous avez déjà un compte? Connectez-vous!</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+              </div>
+          </div>
+      </div>
+</div>
+</div> 

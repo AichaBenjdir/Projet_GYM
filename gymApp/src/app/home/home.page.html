@@ -1,0 +1,35 @@
+<ion-content padding>
+    <div style="vertical-align: middle">
+        <div text-center padding>
+            <img src="/assets/gym.png" width="50%" height="25%">
+        </div>
+        <div>
+            <ion-card padding>
+              <h4 text-center margin-top>Connectez-vous</h4>
+              <ion-list>
+                <ion-item>
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input [(ngModel)]="username"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Mot de passe</ion-label>
+                  <ion-input type="password" [(ngModel)]="password"></ion-input>
+                </ion-item>
+              </ion-list>
+
+              <div text-center margin-top>
+                <ion-button color="primary" slot="end" expand="full" (click)="signIn()">
+                  CONNECTER
+                </ion-button>
+              </div>
+
+              <div text-center margin-top>
+                <ion-button color="primary" slot="start" fill="clear" (click)="signUp()">
+                  Vous n'avez pas un compte?
+                </ion-button>
+              </div>
+            </ion-card>
+          </div>
+    </div>
+</ion-content>

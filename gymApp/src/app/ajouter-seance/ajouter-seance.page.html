@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Réserver une séance</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-list-header><h3>Nouvel Séance</h3></ion-list-header>
+      
+        <ion-item>
+          <ion-label>Discipline</ion-label>
+          <ion-select placeholder="Select One" [(ngModel)]="myDiscipline">
+            <ion-select-option *ngFor="let disc of Disciplines ; let i=index" [value]="disc">{{disc.nom}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime display-format="DD-MM-YYYY" picker-format="DD MM YYYY" placeholder="Choisir le date" [(ngModel)]="myDate"></ion-datetime>
+        </ion-item>
+
+          <div text-center margin-top>
+            <ion-button color="secondary" slot="end" expand="full" (click)="confirm()">
+              Confirmer
+            </ion-button>
+          </div>
+
+    </ion-list>
+
+</ion-content>

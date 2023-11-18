@@ -1,0 +1,62 @@
+<ion-content padding>
+    <div style="vertical-align: middle">
+        <div text-center padding>
+            <img src="/assets/gym.png" width="40%" height="15%">
+        </div>
+        <div>
+            <ion-card padding>
+              <h4 text-center margin-top>Inscrivez-vous</h4>
+
+              <ion-item>
+                  <ion-label position="floating">Nom et prénom</ion-label>
+                  <ion-input [(ngModel)]="name" required></ion-input>
+                </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input [(ngModel)]="email" required></ion-input>
+              </ion-item>
+            
+              <ion-item>
+                <ion-label position="floating">Mot de passe</ion-label>
+                <ion-input type="password" [(ngModel)]="password" required></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label position="floating">Numéro de CIN</ion-label>
+                  <ion-input [(ngModel)]="num_cin" required></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label position="floating">Numéro de téléphone</ion-label>
+                  <ion-input [(ngModel)]="num_tel" required></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label>Sexe</ion-label>
+                  <ion-select placeholder="Sélectionner ..." [(ngModel)]="sexe" required>
+                    <ion-select-option value="Homme">Homme</ion-select-option>
+                    <ion-select-option value="Femme">Femme</ion-select-option>
+                  </ion-select>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label>Date de naissance</ion-label>
+                  <ion-datetime display-format="DD-MM-YYYY" picker-format="DD MM YYYY" placeholder="Choisir le date" [(ngModel)]="date_naissance" required></ion-datetime>
+              </ion-item>
+            
+              <div text-center margin-top>
+                <ion-button color="primary" slot="start" expand="full" (click)="signUp()">
+                  Créer votre compte
+                </ion-button>
+              </div>
+
+              <div text-center margin-top>
+                  <ion-button color="primary" slot="start" fill="clear" (click)="signIn()">
+                    Vous avez déjà un compte?
+                  </ion-button>
+                </div>
+            </ion-card>
+          </div>
+      </div>
+</ion-content>

@@ -1,0 +1,159 @@
+<section class="content" style="padding: 10px">
+  <div class="container-fluid">  
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Liste de disciplines</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header d-flex">
+          <div class="mr-auto p-2" style="text-align: left;">
+            <h6 class="font-weight-bold text-primary">Pour ajouter un nouveau discipline, cliquez sur le bouton ajouter</h6>
+          </div>
+          <div class="p-2" style="text-align: right;">
+              <button type="button" class="btn btn-outline-success" (click)="goToAddPage()"  >
+                  <b>Ajouter</b>
+              </button>
+          </div>       
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Discipline</th>
+                              <th scope="col">Entraineurs</th>
+                              <th scope="col">Groupes</th>
+                              <th scope="col"></th>
+                              <th scope="col"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let disc of Disciplines ; let i=index">
+                              <th scope="row">{{i}}</th>
+                              <td>{{disc.nom}}</td>
+                              <td> 
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#entraineursModal" (click)="afficherEntraineurs(i)">
+                                      Afficher
+                                </button>
+                              </td>
+                              <td> 
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#groupesModal" (click)="afficherGroupes(i)">
+                                      Afficher
+                                </button>
+                              </td>
+                              <td> 
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="modifier(i)">
+                                      Modifier
+                                </button>
+                              </td>  
+                              <td> 
+                                <button type="button" class="btn btn-danger" (click)="supprimer(disc.id,i)"  >
+                                      Supprimer
+                                </button>
+                              </td>   
+                            </tr>
+                          </tbody>
+                      </table>
+                  </div>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="entraineursModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Liste des entraineurs</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" *ngFor="let ent of ListeEntraineurs ; let i=index">{{ent.nom}}</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="groupesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Liste des groupes</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" *ngFor="let grp of Groupes ; let i=index"><b>{{grp.nom}}</b> (Entraineur: {{grp.nom_entraineur}})</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Modifier discipline</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label>Nom de discipline</label>
+                                    <div class="form-line">
+                                         <input type="text" class="form-control" placeholder="Nom de discipline" [(ngModel)]="nom" name="nom" required />
+                                    </div>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>Choisir un entraineur</label>
+                                    <select class="form-control show-tick" type="text" [(ngModel)]="entraineur" name="entraineur"  (ngModelChange)="entraineurChanged()"> 
+                                          <option value="{{i}}" *ngFor="let ent of Entraineurs; let i = index;">
+                                                {{ent.nom}} ({{ent.cin}})
+                                          </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                  <label>Liste des entraineurs choisis</label>
+                                  <select multiple class="form-control" [(ngModel)]="listeEntraineurs" name="listeEntraineurs" disabled> 
+                                        <option value="{{i}}" *ngFor="let entraineur of ListeEntraineurs; let i = index;">
+                                              {{entraineur.nom}} ({{entraineur.cin}})
+                                        </option>
+                                  </select>
+                              </div>
+    
+                                <div class="alert alert-danger" role="alert" *ngIf = "error">
+                                    {{errorMessage}}
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                          <button type="button" class="btn btn-primary" (click)="modifier_disc(i)">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+      </div>
+  </div>
+</section>
+

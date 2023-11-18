@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mes séances</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item *ngFor="let seance of Seances ; let i=index"> 
+          <ion-label>
+              <h2><b>{{seance.discipline}}</b></h2>
+              <h3><b>Date: </b>{{seance.date}}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button (click) = "goToSeances()">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+      </ion-fab>
+
+</ion-content>

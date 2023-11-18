@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Acceuil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div scrollY="true" style="height: 100%"> -->
+      <ion-item lines="none">      
+            <ion-avatar slot="start" (click) = "goToProfile()">
+                <img [src]="profileImage">
+            </ion-avatar>
+        <ion-label>
+                <div style="background-color: #dcdee2; padding: 10px; text-align: center; border-radius: 3px" (click) = "addImage()">
+                  <h3><b>Exprimez-vous</b></h3>  
+                  <!-- <ion-input value="Publier quelque chose..." color="dark" style="background-color: #dcdee2" disabled (click) = "addImage()"></ion-input> -->
+                </div>
+        </ion-label>
+      </ion-item>
+
+  <ion-list lines="none" style="background-color: whitesmoke">
+    <!-- <ion-item > -->
+    <ion-card tappable *ngFor="let post of Posts ; let i=index;"  style="background-color: white">
+      <ion-card-header>
+        <ion-item>
+          <ion-avatar slot="start">
+              <img [src]="post.adherent_image">
+          </ion-avatar>
+          <ion-label>
+            <ion-card-title>{{post.adherent}}</ion-card-title>
+            <ion-card-subtitle>{{post.date | date:'dd MMM yyyy à HH:mm' : undefined : 'fr'}}</ion-card-subtitle>
+          </ion-label>
+        </ion-item>
+      </ion-card-header>
+
+    
+      <ion-card-content style="padding: 0pt">
+
+          <div padding-bottom padding-start padding-end *ngIf="post.show_content">
+            <h3 style="color: black; font-size: 12pt">{{post.content}}</h3>
+          </div>
+
+          <img [src]="post.image" >
+
+          <ion-row align-items-stretch margin-top margin-start margin-end>
+            <ion-col>
+                <div style="text-align: start" (click) = "showLikes(i)">{{post.nbr_likes}} J'aime</div>
+            </ion-col>
+            <ion-col>
+                <div style="text-align: end" (click) = "comment(i)">{{post.nbr_comments}} Commentaires</div>
+            </ion-col>
+          </ion-row>
+
+          <div margin-start margin-end style="height: 1pt; background-color: #dcdee2"></div>
+
+          <ion-row justify-content-center> 
+              <ion-col>
+                  <ion-button size="small" fill="clear" color="dark" expand="full" (click) = "likePost(i)">
+                      <ion-icon slot="icon-only" name="thumbs-up" [color]="post.likeColor"></ion-icon>
+                  </ion-button>
+              </ion-col>
+     
+              <ion-col>
+                  <ion-button size="small" fill="clear" color="dark" expand="full" (click) = "comment(i)">
+                      <ion-icon slot="icon-only" name="chatbubbles"></ion-icon>
+                  </ion-button>
+              </ion-col>
+  
+          </ion-row>
+        
+
+      </ion-card-content>
+        <div *ngIf="post.show_comment" >
+          <!-- Input with clear button when there is a value -->
+
+            <ion-list lines="none" padding-start>
+              <ion-item *ngFor="let comment of ListeComments ; let j=index;">
+                <ion-avatar slot="start">
+                    <img [src]="comment.adherent_image">
+                </ion-avatar>
+                <ion-label>
+                  <h5><b>{{comment.nom_adherent}}</b></h5>
+                  <h6>{{comment.content}}</h6>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          
+          <ion-row>
+            <ion-col size="9" align-self-center>
+              <ion-input clearInput placeholder="Votre commentaire..." color="dark" style="background-color: whitesmoke; border-radius: 2px" [(ngModel)]="comment_content" name="comment_content"></ion-input>
+            </ion-col>
+            <ion-col>
+                <ion-button fill="solid" color="primary" expand="full" (click) = "addComment(i)">
+                    <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+                </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+    </ion-card>
+  <!-- </ion-item> -->
+  </ion-list>
+  <!-- </div> -->  
+
+</ion-content>
+
+<ion-menu side="start">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div style="background-color: #3880ff" padding>
+        <ion-avatar slot="start" (click) = "goToProfile()">
+          <img [src]="profileImage">
+        </ion-avatar>
+        <h5 style="color: white"><b>{{username}}</b></h5>
+        <h6 style="color: white">{{user_email}}</h6>
+    </div>
+    <ion-list>
+      <ion-item (click)="goToProfile()">
+          <ion-icon slot="start" name="contact"></ion-icon>
+          Mon profile
+      </ion-item>
+      <ion-item (click)="goToAbonnements()">
+          <ion-icon slot="start" name="list-box"></ion-icon>
+          Mes abonnements
+      </ion-item>
+      <ion-item (click)="goToSeances()">
+          <ion-icon slot="start" name="document"></ion-icon>
+          Mes séances
+      </ion-item>
+      <ion-item (click)="goToEvenements()">
+          <ion-icon slot="start" name="megaphone"></ion-icon>
+          Liste de évènements
+      </ion-item>
+      <ion-item (click)="logOut()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+          Déconnexion
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-menu>

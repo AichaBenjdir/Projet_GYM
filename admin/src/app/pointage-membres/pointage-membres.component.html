@@ -1,0 +1,168 @@
+
+<section class="content" style="padding: 10px">
+  <div class="container-fluid">  
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Pointage de membres</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header d-flex">
+          <div class="mr-auto p-2" style="text-align: left;">
+            <h5 class="font-weight-bold text-primary">Pointage de membres pour le {{currentDate}}</h5>
+            <h6 class="font-weight-bold">Pour effecturer le pointage, veuillez choisir le type des membres (Adhérents ou Entraineurs) et choisir le groupe pour les adhérents</h6>
+
+            <div class="form-group">
+              <label>Type des membres</label>
+              <select class="form-control show-tick" type="text" [(ngModel)]="typeMembres" name="typeMembres" (ngModelChange)="typeChanged()" > 
+                    <option value="Entraineurs">Entraineurs</option>
+                    <option value="Adherents">Adhérents</option>
+              </select>
+            </div>
+
+            <div class="form-group" *ngIf="isEntraineurs">
+              <label>Groupe</label>
+              <select class="form-control show-tick" type="text" [(ngModel)]="groupe" name="groupe"  (ngModelChange)="groupeChanged()" > 
+                    <option value="{{i}}" *ngFor="let grp of Groupes; let i = index;">
+                          {{grp.nom}} ({{grp.nom_discipline}} entrainé par {{grp.nom_entraineur}})
+                    </option>
+              </select>
+            </div>
+
+          </div>   
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Membre</th>
+                              <th scope="col"></th>
+                              <th scope="col"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let mem of Membres ; let i=index">
+                              <th scope="row">{{i}}</th>
+                              <td>{{mem.nom}}</td>
+                              <td> 
+                                <button type="button" class="btn btn-success" (click)="marquerPresence(i, 'present')"  >
+                                      Présent
+                                </button>
+                              </td>  
+                              <td> 
+                                <button type="button" class="btn btn-danger" (click)="marquerPresence(i, 'absent')"  >
+                                      Absent
+                                </button>
+                              </td>   
+                            </tr>
+                          </tbody>
+                      </table>
+                  </div>
+
+                 <!-- Modal -->
+                <div class="modal fade" id="joursModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Liste des jours d'entrainements</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" *ngFor="let jour of ListeJours ; let i=index">{{jour}}</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Modifier planification</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                              <div class="form-group">
+                                  <label>Choisir un groupe</label>
+                                  <select class="form-control show-tick" type="text" [(ngModel)]="groupe" name="groupe"> 
+                                        <option value="{{i}}" *ngFor="let grp of Groupes; let i = index;">
+                                              {{grp.nom}} ({{grp.nom_discipline}} entrainé par {{grp.nom_entraineur}})
+                                        </option>
+                                  </select>
+                              </div>
+    
+                              <div class="form-group">
+                                <label>Salle d'entrainement</label>
+                                <div class="form-line">
+                                      <input type="text" class="form-control" placeholder="Salle d'entrainement" [(ngModel)]="salle" name="salle" required />
+                                </div>
+                              </div>
+    
+                              <div class="form-group">
+                                <label>Heure de début</label>
+                                <div class="form-line">
+                                      <input type="datetime" class="form-control" placeholder="hh:mm" [(ngModel)]="heureDebut" name="heureDebut" required />
+                                </div>
+                              </div>
+  
+                              <div class="form-group">
+                                  <label>Heure de fin</label>
+                                  <div class="form-line">
+                                        <input type="datetime" class="form-control" placeholder="hh:mm" [(ngModel)]="heureFin" name="heureFin" required />
+                                  </div>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label>Choisir les jours d'entrainement</label>
+                                    <select class="form-control show-tick" type="text" [(ngModel)]="jours" name="jours" (ngModelChange)="joursChanged()" > 
+                                          <option value="Lundi">Lundi</option>
+                                          <option value="Mardi">Mardi</option>
+                                          <option value="Mercredi">Mercredi</option>
+                                          <option value="Jeudi">Jeudi</option>
+                                          <option value="Vendredi">Vendredi</option>
+                                          <option value="Samedi">Samedi</option>
+                                          <option value="Dimanche">Dimanche</option>
+                                    </select>
+                                </div>
+      
+                                <div class="form-group">
+                                    <label>Liste des jours choisis</label>
+                                    <select multiple class="form-control" [(ngModel)]="listeJours" name="listeJours" disabled> 
+                                          <option value="{{i}}" *ngFor="let jour of Jours; let i = index;">
+                                                {{jour}}
+                                          </option>
+                                    </select>
+                                </div>    
+                                <div class="alert alert-danger" role="alert" *ngIf = "error">
+                                    {{errorMessage}}
+                                </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                          <button type="button" class="btn btn-primary" (click)="modifier_planification(i)">Enregistrer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+      </div>
+  </div>
+</section>
+

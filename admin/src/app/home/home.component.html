@@ -1,0 +1,252 @@
+  <!--<div >
+  <nav class="navbar navbar-dark bg-info" style="margin:0; width: 100%;">
+    <div class="container-fluid">
+      <div class="navbar-header" style="width: 100%;">
+          <div class="d-flex">
+              <div class="mr-auto p-2"><a class="navbar-brand" href="/home"><b>GYM ADMIN</b></a></div>
+              <div class="p-2">
+                <button type="button" class="btn btn-danger" (click)="logout()"  >
+                  <b>Deconnexion</b>
+                </button>
+              </div>
+          </div>
+        </div>
+    </div>
+  </nav>
+
+  <nav id="leftsidebar" class="sidebar">
+      <div class="menu">
+          <ul class="list">
+              <li class="header">NAVIGATION PRINCIPALE</li>
+
+              <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+                      <i class="material-icons">collections</i>
+                      <a routerLink="/Bienvenu"><span>Acceuil</span></a>
+              </a>
+              </li>
+
+              <li>
+                  <a href="javascript:void(0);" class="menu-toggle">
+                      <i class="material-icons">ballott</i>
+                      <span>Classes</span>
+                  </a>
+                  <ul class="ml-menu">
+                      <li>
+                          <a routerLink="/Classes">Classes</a>
+                      </li>
+                      <li>
+                          <a routerLink="/Ajouter_Classe">Ajouter Classe</a>
+                      </li>
+                     
+                  </ul>
+              </li>
+
+              <li>
+                  <a href="javascript:void(0);" class="menu-toggle">
+                      <i class="material-icons">assignment_ind</i>
+                      <span>Etudiants</span>
+                  </a>
+                  <ul class="ml-menu">
+                      <li>
+                          <a routerLink="/Etudiants">Etudiants</a>
+                      </li>
+                      <li>
+                          <a routerLink="/Ajouter_Etudiant">Ajouter Etudiant</a>
+                      </li>
+                     
+                  </ul>
+              </li>
+
+              <li>
+                  <a href="javascript:void(0);" class="menu-toggle">
+                      <i class="material-icons">bookmarks</i>
+                      <span>Matieres</span>
+                  </a>
+                  <ul class="ml-menu">
+                      <li>
+                          <a routerLink="/Matieres">Matieres</a>
+                      </li>
+                      <li>
+                          <a routerLink="/Ajouter_Matiere">Ajouter Matiere</a>
+                      </li>
+                     
+                  </ul>
+              </li>
+
+              <li>
+                  <a href="javascript:void(0);" class="menu-toggle">
+                      <i class="material-icons">account_box</i>
+                      <span>Enseignants</span>
+                  </a>
+                  <ul class="ml-menu">
+                      <li>
+                          <a routerLink="/Enseignants">Enseignant</a>
+                      </li>
+                      <li>
+                              <a routerLink="/Ajouter_Enseignant">Ajouter Enseignant</a>
+                      </li>
+                     
+                  </ul>
+              </li>
+              <li>
+                  <a href="javascript:void(0);" class="menu-toggle">
+                      <i class="material-icons">account_balance</i>
+                      <span>Enseignements</span>
+                  </a>
+                  <ul class="ml-menu">
+                      <li>
+                          <a routerLink="/Enseignement">Enseignements</a>
+                      </li>
+                      <li>
+                              <a routerLink="/Ajouter_Enseignement">Ajouter Enseignement</a>
+                      </li>
+                     
+                  </ul>
+              </li>
+              <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+                  <i class="material-icons">collections</i>
+                  <a routerLink="/Justification"><span>Justification</span></a>
+              </a>
+              </li>
+              
+          </ul>
+      </div>
+      <div class="legal">
+          <div class="copyright">
+              &copy; 2017 - 2018 
+          </div>
+         
+      </div>
+    </nav>
+
+</div>
+-->
+
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="\home">
+            <div class="sidebar-brand-icon">
+              <i class="fas fa-dumbbell"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">GYM ADMIN </div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+       Gestion
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Gérer Membres</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Gestion des Membres:</h6>
+            <a class="collapse-item" href="test.html" > Gérer Adhérents</a>
+            <a class="collapse-item" href="cards.html">Gérer Entraineurs</a>
+          </div>
+        </div>
+      </li> -->
+
+      <!-- <div class="sidebar-heading"><a href="\home"><b>GYM ADMIN</b></a></div> -->
+
+      <li class="nav-item">
+            <a routerLink="." class="nav-link">Acceuil</a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a routerLink="./liste_disciplines" class="nav-link">Gérer les disciplines</a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a routerLink="./liste_adherents" class="nav-link">Gérer les adhérents</a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a routerLink="./liste_entraineurs" class="nav-link">Gérer les  entraineurs</a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a routerLink="./liste_groupes" class="nav-link">Gérer les  groupes</a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a routerLink="./liste_planifications" class="nav-link">Planifier les entrainements</a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a routerLink="./liste_evenements" class="nav-link">Gérer les évènements</a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a routerLink="./pointage_membres" class="nav-link">Pointer les adhérents et entraineurs</a>
+        </li>
+
+      <!-- Sidebar Toggler (Sidebar) 
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>-->
+    </ul>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper" class="d-flex flex-column">
+
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+        <ul class="navbar-nav ml-auto">      
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-danger" (click)="logout()"  >
+                        <b>Deconnexion</b>
+                    </button>
+                </li>
+            </ul>
+            </div> -->
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user_name}}</span>
+                      <img class="img-profile rounded-circle" src="{{imageUrl}}">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                      <a class="dropdown-item" routerLink="./profile">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                      </a>
+                      
+                      <div class="dropdown-divider"></div>
+                      <button class="dropdown-item" (click)="logout()">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Deconnexion
+                      </button>
+                    </div>
+                  </li>
+        </ul>
+      </nav>
+
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
